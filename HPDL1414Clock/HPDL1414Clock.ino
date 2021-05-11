@@ -21,6 +21,7 @@
 const char* ssid  = "DynamicOP";
 const char* password = "DynamicOP";
 int ldrValue = 0;
+int i=0;
  
 WiFiUDP ntpUDP;
  
@@ -168,7 +169,25 @@ void loop() {
     dispchar1(1,'-'); 
     delay(500);
   }
-  
+
+  if (i==9){
+    day_    = day(unix_epoch);
+    month_  = month(unix_epoch);
+    year_   = year(unix_epoch);
+    dispchar2(0,char(day_   % 10 + 48)); 
+    dispchar2(1,char(day_   / 10 + 48)); 
+    dispchar2(2,'-'); 
+    dispchar2(3,char(month_  % 10 + 48)); 
+    dispchar1(0,char(month_  / 10 + 48)); 
+    dispchar1(1,'-'); 
+    dispchar1(2,char(year_   % 10 % 10 + 48)); 
+    dispchar1(3,char((year_   / 10) % 10 + 48)); 
+    i=0;
+    delay(1000);
+  }
+  else{
+    i++;
+  }
   
 
 
